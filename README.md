@@ -3,7 +3,6 @@
 
 AI-Base es una plantilla de código abierto diseñada para tareas de análisis y gestión de bases de datos. Proporciona un pipeline completo para gestionar, consultar y visualizar datos de manera eficiente. Esta solución es adaptable y extensible, ideal para empresas que desean integrar herramientas de inserción, modificación y análisis de datos de manera sencilla.
 
----
 
 ## Características Clave
 
@@ -25,7 +24,6 @@ AI-Base es una plantilla de código abierto diseñada para tareas de análisis y
   - Node.js y npm para el front-end.
   - Python y librerías requeridas para el back-end.
 
----
 
 ## Requerimientos Previos
 
@@ -66,7 +64,6 @@ npm install
 
 **Nota**: Asegúrate haber instalado [Node.js](https://nodejs.org/en/) y npm previamente.
 
----
 
 ## Ejecución
 
@@ -96,7 +93,6 @@ uvicorn app.main:app --reload --port 4321
 
 **Nota**: Por defecto la aplicación debe configurarse para correr en el puerto 4321, en caso de que se requiera utilizar un puerto diferente asegurese de corregir debidamente las rutas tanto en Back-End como en Front-End.
 
----
 
 ## Configuración De Servicios Externos
 
@@ -119,7 +115,6 @@ DATABASE=database
 
 4. Ajuste los endpoints del Front-End para que coincidan con aquellos definidos en el Back-End.
 
----
 
 ### Asistencia por IA
 
@@ -151,8 +146,6 @@ GRAPH_ASSISTANT = your-graph-assistant-id
 CHAT_ASSISTANT = your-chat-assistant-id
 ```
 
----
-
 ### Gestión De Sesiones
 
 AI-Base utiliza los servicios de [Firebase](https://firebase.google.com/) para realizar la gestión de sesiones.
@@ -178,13 +171,14 @@ export const environment = {
 
 ### Página de Bienvenida
 
-
+<img src="Doc-Images/Imagen1.png" alt="Descripción de la imagen" width="600" height="auto">
 
 Permite a los usuarios autenticarse con su correo electrónico y contraseña.
 
 ### Modelo de Datos
 
-
+<img src="Doc-Images/Imagen2.png" alt="Descripción de la imagen" width="600" height="auto">
+<img src="Doc-Images/Imagen3.png" alt="Descripción de la imagen" width="600" height="auto">
 
 Administra las tablas de la base de datos:
 - Navegación por tablas en la barra lateral.
@@ -192,19 +186,21 @@ Administra las tablas de la base de datos:
 
 ### Formulario de Inserción de Datos
 
-
+<img src="Doc-Images/Imagen4.png" alt="Descripción de la imagen" width="600" height="auto">
+<img src="Doc-Images/Imagen5.png" alt="Descripción de la imagen" width="600" height="auto">
 
 Permite ingresar nuevos registros a la tabla seleccionada.
 
 ### Sección de Consultas
 
-
+<img src="Doc-Images/Imagen6.png" alt="Descripción de la imagen" width="600" height="auto">
 
 Interactúa con un asistente de IA para extraer y visualizar información.
 
 ### Ventana Emergente de Resultados
 
-
+<img src="Doc-Images/Imagen7.png" alt="Descripción de la imagen" width="600" height="auto">
+<img src="Doc-Images/Imagen8.png" alt="Descripción de la imagen" width="600" height="auto">
 
 Muestra tablas de datos y gráficos generados por el asistente, con opciones para:
 - Descargar la información.
@@ -212,10 +208,10 @@ Muestra tablas de datos y gráficos generados por el asistente, con opciones par
 
 ### Sección de reportes (En desarrollo)
 
-
+<img src="Doc-Images/Imagen9.png" alt="Descripción de la imagen" width="600" height="auto">
+<img src="Doc-Images/Imagen10.png" alt="Descripción de la imagen" width="600" height="auto">
 
 - Permite crear dashboards con la información consultada y guardarlos como imagen.
----
 
 
 ¡Gracias por usar AI-Base! 🎉
