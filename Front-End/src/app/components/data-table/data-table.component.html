@@ -1,0 +1,127 @@
+<p-table
+  #dt1
+  [value]="tableData"
+  class="w-full custom-table"
+  [paginator]="true"
+  [rows]="5"
+  [first]="first"
+  [scrollable]="true"
+  scrollHeight="52vh"
+  [style]="{ 'max-width': '100vw', 'max-height': '70vw' }"
+  [showCurrentPageReport]="true"
+  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+  (onPage)="pageChange($event)"
+  [rowsPerPageOptions]="[5, 10, 25, 50, 100]"
+  [globalFilterFields]="columns"
+  *ngIf="isComponentVisible"
+>
+  <ng-template pTemplate="caption">
+    <div class="flex items-center justify-between">
+      <!-- Contenedor para el input de búsqueda y botón "Clear" -->
+      <div class="flex items-center">
+        <span class="p-input-icon-left">
+          <i class="pi pi-search"></i>
+          <input
+            pInputText
+            type="text"
+            [(ngModel)]="searchValue"
+            (input)="handleInput($event)"
+            placeholder="Search keyword"
+          />
+        </span>
+        <p-button
+          id="clearbutton"
+          label="Clear"
+          [outlined]="true"
+          icon="pi pi-filter-slash"
+          (onClick)="clear(dt1)"
+        ></p-button>
+      </div>
+
+      <!-- Botón "Agregar elemento" alineado a la derecha -->
+      <p-button
+        severity="info"
+        label="Agregar elemento"
+        icon="pi pi-plus"
+        class="ml-auto"
+        (onClick)="openDialog(tableName)"
+        [style]="{ background: '#007bff' }"
+      ></p-button>
+    </div>
+  </ng-template>
+
+  <ng-template pTemplate="header">
+    <tr>
+      <th *ngFor="let col of columns" [pSortableColumn]="col">
+        {{ col | snakeToTitle }}
+        <p-sortIcon [field]="col" />
+      </th>
+
+      <th>Acciones</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-rowData>
+    <tr>
+      <td *ngFor="let col of columns">
+        <!-- Mostrar input si la fila está en modo de edición -->
+        <ng-container *ngIf="editingRow === rowData; else viewMode">
+          <input
+            pInputText
+            [(ngModel)]="rowData[col]"
+            type="text"
+            [style]="{ maxWidth: '100%' }"
+          />
+        </ng-container>
+        <!-- Modo de solo visualización -->
+        <ng-template #viewMode>{{ rowData[col] }}</ng-template>
+      </td>
+
+      <td>
+        <!-- Mostrar acciones según el modo -->
+        <div id="tool_buttons">
+          <ng-container *ngIf="editingRow === rowData; else defaultActions">
+            <p-button
+              id="save_button"
+              icon="pi pi-check"
+              [style]="{ width: '35px', height: '35px' }"
+              severity="success"
+              [rounded]="true"
+              [outlined]="true"
+              (onClick)="saveRow(rowData)"
+            ></p-button>
+            <p-button
+              id="cancel_button"
+              icon="pi pi-times"
+              [style]="{ width: '35px', height: '35px' }"
+              severity="danger"
+              [rounded]="true"
+              [outlined]="true"
+              (onClick)="cancelEdit()"
+            ></p-button>
+          </ng-container>
+          <ng-template #defaultActions>
+            <p-button
+              id="edit_button"
+              icon="pi pi-pencil"
+              [style]="{ width: '35px', height: '35px' }"
+              [rounded]="true"
+              [outlined]="true"
+              (onClick)="editRow(rowData)"
+            ></p-button>
+            <p-button
+              id="delete_button"
+              icon="pi pi-trash"
+              [style]="{ width: '35px', height: '35px' }"
+              severity="danger"
+              [rounded]="true"
+              [outlined]="true"
+              (onClick)="confirm($event, rowData.id)"
+            ></p-button>
+          </ng-template>
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+<p-confirmDialog></p-confirmDialog>
+<p-toast></p-toast>

@@ -1,0 +1,68 @@
+<div class="form-container">
+  <h2>{{ tableName | snakeToTitle }}</h2>
+  <form *ngIf="form" [formGroup]="form">
+    <div class="form_grid">
+      <div *ngFor="let field of schema_filter" class="form_field">
+        <label for="{{ field.column_name }}">{{
+          field.column_name | titlecase
+        }}</label>
+
+        <ng-container [ngSwitch]="getFieldType(field)">
+          <!-- Selector de fecha con p-calendar (solo cuando es tipo 'calendar') -->
+          <p-calendar
+            *ngSwitchCase="'calendar'"
+            id="{{ field.column_name }}"
+            [formControlName]="field.column_name"
+            [showIcon]="true"
+            dateFormat="yy-mm-dd"
+            placeholder="{{ field.column_name | titlecase }}"
+          ></p-calendar>
+
+          <!-- Input normal para otros tipos -->
+          <input
+            *ngSwitchDefault
+            pInputText
+            id="{{ field.column_name }}"
+            [type]="getFieldType(field)"
+            [formControlName]="field.column_name"
+            [attr.maxlength]="field.character_maximum_length || null"
+            [attr.required]="field.is_nullable === 'NO' ? true : null"
+            [disabled]="field.is_primary_key === 'YES'"
+          />
+        </ng-container>
+
+        <ng-template #selectField>
+          <p-dropdown
+            [formControlName]="field.column_name"
+            [options]="tableData"
+            optionLabel="id_empleado"
+            optionValue="id_empleado"
+            placeholder="Select {{ field.column_name | titlecase }}"
+          ></p-dropdown>
+        </ng-template>
+
+        <div *ngIf="form.get(field.column_name)?.invalid" class="p-error">
+          <small *ngIf="form.get(field.column_name)?.hasError('required')">
+            {{ field.column_name | titlecase }} is required.
+          </small>
+
+          <small *ngIf="form.get(field.column_name)?.hasError('maxlength')">
+            Max length is {{ field.character_maximum_length }} characters.
+          </small>
+        </div>
+      </div>
+    </div>
+    <div class="form-actions">
+      <button
+        id="add_button"
+        pButton
+        type="submit"
+        label="Agregar"
+        icon="pi pi-plus"
+        class="p-button-success"
+        [disabled]="form.invalid"
+        (click)="submitForm()"
+      ></button>
+    </div>
+  </form>
+</div>

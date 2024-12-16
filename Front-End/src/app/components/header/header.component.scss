@@ -1,0 +1,89 @@
+:host {
+  display: flex;
+}
+
+mat-toolbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  border-bottom: 2px solid rgb(230, 230, 230);
+  padding-bottom: 0px;
+  padding-top: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav_buttons {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+}
+
+.nav_buttons button {
+  width: auto;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  padding-left: 15px;
+  padding-right: 15px;
+
+  border: 0px;
+
+  background: transparent;
+
+  font-size: 11pt;
+  font-weight: 500;
+
+  color: black;
+  i {
+    color: black;
+  }
+
+  transition: 0.2s ease;
+}
+
+.nav_buttons button:hover {
+  background: #f3f4f6;
+  color: black;
+  i {
+    color: black;
+  }
+}
+
+.nav_buttons button.active {
+  background: #007bff;
+  color: white;
+
+  i {
+    color: white;
+  }
+}
+
+.nav_buttons button i {
+  font-size: 20px;
+}
+
+@media (max-width: 766px) {
+  mat-toolbar {
+    padding-left: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav_buttons button {
+    font-size: 0pt;
+    gap: 0px;
+  }
+}

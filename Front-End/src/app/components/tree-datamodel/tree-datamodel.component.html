@@ -1,0 +1,9 @@
+<div class="card">
+  <p-tree
+    [value]="files"
+    selectionMode="single"
+    [(selection)]="selectedFile"
+    (onNodeSelect)="nodeSelect($event)"
+  >
+  </p-tree>
+</div>

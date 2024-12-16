@@ -1,0 +1,40 @@
+<mat-toolbar color="primary">
+  <div class="logo"></div>
+
+  <div class="nav_buttons">
+    <button
+      (click)="setActiveTab('datamodel')"
+      [ngClass]="{ active: activeTab === 'datamodel' }"
+    >
+      <i class="pi pi-database"></i>
+      Modelo
+    </button>
+
+    <button
+      (click)="setActiveTab('chat')"
+      [ngClass]="{ active: activeTab === 'chat' }"
+    >
+      <i class="pi pi-server"></i>
+      Consultas
+    </button>
+
+    <button
+      (click)="setActiveTab('report')"
+      [ngClass]="{ active: activeTab === 'report' }"
+    >
+      <i class="pi pi-chart-scatter"></i>
+      Reportes
+    </button>
+  </div>
+
+  <div class="nav_buttons">
+    <button mat-icon-button [matMenuTriggerFor]="profileMenu">
+      <i class="pi pi-user"></i>
+    </button>
+    <mat-menu #profileMenu="matMenu">
+      <p>{{ email }}</p>
+      <button mat-menu-item>Settings</button>
+      <button mat-menu-item (click)="logout()">Logout</button>
+    </mat-menu>
+  </div>
+</mat-toolbar>

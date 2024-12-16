@@ -1,0 +1,107 @@
+<form [formGroup]="billForm" (ngSubmit)="onSubmit()">
+  <!-- Tipo De Factura (Radio Buttons) -->
+  <h2>Nueva Factura:</h2>
+
+  <div id="type-client-group">
+    <div class="form-group">
+      <label>Tipo De Factura:</label>
+      <p-radioButton
+        class="radio"
+        name="tipoFactura"
+        value="proveedor"
+        formControlName="tipoFactura"
+        label="Compra"
+        (ngModelChange)="onChangeEntities()"
+      ></p-radioButton>
+      <p-radioButton
+        class="radio"
+        name="tipoFactura"
+        value="cliente"
+        formControlName="tipoFactura"
+        label="Venta"
+        (ngModelChange)="onChangeEntities()"
+      ></p-radioButton>
+    </div>
+
+    <div class="form-group">
+      <label for="entity">Cliente / Proveedor:</label>
+      <p-dropdown
+        [options]="entities"
+        formControlName="entity"
+        optionLabel="nombre"
+        placeholder="Seleccione..."
+        (onChange)="onEntitySelected($event.value)"
+        filter="true"
+      >
+      </p-dropdown>
+    </div>
+  </div>
+  <label>Seleccionar Productos:</label>
+  <table>
+    <thead>
+      <tr>
+        <th>Producto</th>
+        <th>Cantidad</th>
+        <th>Precio</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody formArrayName="productos">
+      <tr
+        *ngFor="let product of productos.controls; let i = index"
+        [formGroupName]="i"
+      >
+        <td>
+          <p-dropdown
+            [options]="getFilteredProducts(i)"
+            formControlName="producto"
+            optionLabel="producto_id"
+            placeholder="Seleccione..."
+            (onChange)="onProductChange($event.value, i)"
+            filter="true"
+          >
+          </p-dropdown>
+        </td>
+        <td>
+          <input
+            type="number"
+            formControlName="cantidad"
+            min="1"
+            (input)="onQuantityChange(i)"
+            (blur)="onBlurQuantity(i)"
+          />
+        </td>
+        <td>
+          <input
+            type="number"
+            formControlName="precio"
+            id="precio_unidad"
+            [value]="getPrecioTotal(i)"
+            readonly
+          />
+        </td>
+        <td>
+          <button type="button" (click)="removeProduct(i)" class="delete-btn">
+            <i class="pi pi-trash" [ngStyle]="{ color: 'white' }"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Button to add more products -->
+  <button type="button" (click)="addProduct()" class="add-btn">
+    Agregar Producto
+  </button>
+
+  <!-- Comentario -->
+  <div class="form-group">
+    <label for="comentario">Comentario:</label>
+    <textarea formControlName="comentario" id="comentario"></textarea>
+  </div>
+
+  <!-- Submit Button -->
+  <button type="submit" [disabled]="billForm.invalid" class="submit-btn">
+    Guardar productos
+  </button>
+</form>

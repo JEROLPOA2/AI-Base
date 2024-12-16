@@ -1,0 +1,37 @@
+::ng-deep .p-tree {
+  padding: 8px;
+  color: #000000;
+}
+
+::ng-deep .p-treenode-content {
+  padding: 0px 0px 0px 0px; // Ajusta el tamaño de las casillas
+  height: 25px;
+  overflow-y: hidden;
+}
+
+::ng-deep .default-node {
+  font-weight: 600;
+  font-size: 10.5pt;
+}
+
+::ng-deep .children-node {
+  font-weight: normal;
+  font-size: 9pt;
+  color: #374151;
+}
+
+::ng-deep .pi {
+  color: #000000;
+}
+
+::ng-deep .children-node .pi {
+  color: #374151;
+}
+
+::ng-deep .p-tree-toggler {
+  margin: 0px 0px 0px 0px;
+}
+
+:host {
+  width: 100%;
+}

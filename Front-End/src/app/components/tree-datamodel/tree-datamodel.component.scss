@@ -1,0 +1,38 @@
+::ng-deep .p-tree {
+  padding: 8px;
+  color: #000000;
+}
+
+::ng-deep .p-treenode-content {
+  padding: 0px 0px 0px 0px;
+  height: 25px;
+  overflow: hidden;
+}
+
+::ng-deep .default-node {
+  font-weight: 500;
+  font-size: 11pt;
+}
+
+::ng-deep .children-node {
+  font-weight: normal;
+  font-size: 10pt;
+  color: #374151;
+}
+
+::ng-deep .pi {
+  font-size: 11pt;
+}
+
+::ng-deep .children-node .pi {
+  color: #374151;
+  font-size: 9pt;
+}
+
+::ng-deep .p-tree-toggler {
+  margin: 0px 0px 0px 0px;
+}
+
+:host {
+  width: 100%;
+}

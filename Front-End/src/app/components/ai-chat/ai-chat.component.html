@@ -1,0 +1,62 @@
+<div class="container">
+  <div #scrollContainer class="scroll-container">
+    <div id="welcome_div">
+      <img id="chat_img" src="/images/Chatbot_Icon.svg" alt="icon" />
+      <p id="explore_label">Exploremos tus datos</p>
+    </div>
+
+    <div id="answer_div">
+      <!-- Recorremos los mensajes -->
+      <ng-container *ngFor="let message of messages">
+        <!-- Solo mostrar mensajes con texto no vacío -->
+        <ng-container *ngIf="message.text.trim()">
+          <!-- Mostrar el mensaje -->
+          <p
+            class="message"
+            [ngClass]="{
+              'from-user': message.fromUser,
+              generating: message.generating
+            }"
+          >
+            {{ getQuestRespFromMessage(message) }}
+          </p>
+      
+          <!-- Si el mensaje tiene datos en "data", mostrar el botón "Show Results" -->
+          <button
+            id="results_button"
+            *ngIf="hasData(message)"
+            (click)="
+              openDialog(
+                getDataFromMessage(message),
+                getIntentionFromMessage(message)
+              )
+            "
+          >
+            Ver resultados obtenidos
+            <img id="results_img" src="/images/OpenResults_Icon.svg" alt="icon" />
+          </button>
+        </ng-container>
+      </ng-container>
+    </div>
+  </div>
+
+  <div id="query_div">
+    <form #form="ngForm" (ngSubmit)="sendMessage(form, form.value.message)">
+      <textarea
+        name="message"
+        placeholder="Realiza una pregunta..."
+        ngModel
+        required
+        autofocus
+        rows="1"
+        [disabled]="generatingInProgress"
+        (input)="autoGrow($event)"
+        (keydown)="handleKeyDown($event, form)"
+      ></textarea>
+
+      <button [disabled]="generatingInProgress || form.invalid">
+        <img src="/images/Send_Icon.svg" id="send_icon" alt="icono" />
+      </button>
+    </form>
+  </div>
+</div>

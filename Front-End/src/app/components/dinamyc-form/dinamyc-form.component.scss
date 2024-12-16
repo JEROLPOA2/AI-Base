@@ -1,0 +1,67 @@
+.form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 95vh;
+  width: 100%;
+  overflow-y: hidden;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.form-container * {
+  font-size: 9pt;
+}
+
+::ng-deep .p-inputtext{
+  font-size: 9pt;
+}
+
+h2 {
+  font-size: 24pt !important;
+
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  overflow-y: hidden;
+  padding-right: 10px; // Espacio interno para separar el contenido de la barra
+  justify-content: space-between;
+  gap: 20px;
+  height: 100%;
+  width: 100%;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+::ng-deep .p-calendar {
+  min-width: 100%;
+}
+
+::ng-deep .p-datepicker * {
+  font-size: 9pt; /* Cambiar el tamaño de fuente */
+  padding: 0px;
+  margin: 0px;
+}
+
+.form_grid {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.form_field {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  min-width: 100%;
+  padding-top: 10px;
+}
+
+@media (max-width: 480px) {
+}

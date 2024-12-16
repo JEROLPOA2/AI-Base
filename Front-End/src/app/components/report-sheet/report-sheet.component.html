@@ -1,0 +1,103 @@
+<div id="report_controls">
+  <button
+    id="download_button"
+    (click)="saveAsImage()"
+    >
+    <i class="pi pi-download"></i>
+  </button>
+</div>
+
+<div #captureElement id="capture_div">
+
+  <div class="report-header">
+    <input
+      type="text"
+      [(ngModel)]="title"
+      class="title-input"
+      placeholder="Ingrese el título del reporte"
+    />
+    <input
+      [(ngModel)]="description"
+      class="description-input"
+      placeholder="Ingrese la descripción del reporte"
+    />
+  </div>
+  
+  <div *ngFor="let row of rows; let rowIndex = index" class="row">
+    
+    <div 
+      *ngFor="let column of row.columns; let colIndex = index" 
+      class="col"
+      [ngClass]="{ 'has-content': column.hasContent }"
+      >
+      <!-- Botones cuando la celda no tiene contenido -->
+      <p-button
+        *ngIf="!column.hasContent"
+        icon="pi pi-plus"
+        label="Añadir elemento"
+        (click)="showMenu(rowIndex, colIndex)"
+        [disabled]="isMenuVisible"
+      ></p-button>
+  
+      <p-button
+        *ngIf="!column.hasContent"
+        icon="pi pi-align-left"
+        label="Escribir"
+        (click)="writeContent(rowIndex, colIndex)"
+        [disabled]="isMenuVisible"
+        severity="help"
+      ></p-button>
+  
+      <!-- Mostrar contenido dinámico cuando la celda tiene contenido -->
+      <div *ngIf="column.hasContent" class="element-container">
+        <!-- Si es un cuadro de texto -->
+        <textarea 
+          *ngIf="isText(column.content)"
+          [(ngModel)]="column.content.value"
+          class="text-area"
+          placeholder="Escribe aquí...">
+        </textarea>
+      
+        <!-- Si es una tabla (array de objetos) -->
+        <p-table
+          *ngIf="isTable(column.content)"
+          [value]="column.content"
+          responsiveLayout="scroll"
+          class="p-mb-3"
+          styleClass="p-datatable-sm"
+        >
+          <ng-template pTemplate="header">
+            <tr>
+              <th *ngFor="let key of getKeys(column.content[0])">{{ key | titlecase }}</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-rowData>
+            <tr>
+              <td *ngFor="let key of getKeys(rowData)">{{ rowData[key] }}</td>
+            </tr>
+          </ng-template>
+        </p-table>
+      
+        <!-- Si es una imagen (base64) -->
+        <img 
+          *ngIf="isImage(column.content)" 
+          [src]="'data:image/png;base64,' + column.content" 
+          alt="Imagen" 
+          width="100%" 
+          height="auto"
+          max-height="100%"
+        />
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  <!-- Componente del menú desplegable -->
+  <app-report-dialog
+    *ngIf="isMenuVisible"
+    class="menu-container"
+    (closeMenu)="hideMenu()"
+  ></app-report-dialog>
+
+</div>

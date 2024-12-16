@@ -1,0 +1,60 @@
+<div class="menu-content">
+  <button class="close-button" (click)="close()">
+    <i class="pi pi-times"></i>
+  </button>
+  <h2 id="title">Elementos Guardados</h2>
+</div>
+
+<div *ngFor="let item of element_list; let i = index" class="table-container">
+
+  <div>
+    <button
+      type="button"
+      pButton
+      class="p-button-rounded p-button-text"
+      (click)="toggleMenu($event, menu)"
+      aria-label="Opciones"
+    >
+      <i class="pi pi-ellipsis-h"></i>
+    </button>
+
+    <p-menu
+      #menu
+      [popup]="true"
+      [model]="[
+        { label: 'Seleccionar', icon: 'pi pi-check', command: select.bind(this, item) },
+        { label: 'Eliminar', icon: 'pi pi-trash', command: delete.bind(this, item) }
+      ]"
+      [appendTo]="'body'"
+    ></p-menu>
+  </div>
+
+  <ng-container *ngIf="isTable(item); else imageTemplate">
+
+    <p-table [value]="item" class="p-mb-3" styleClass="p-datatable-sm">
+      
+      <ng-template pTemplate="header">
+        <tr>
+          <th *ngFor="let key of getKeys(item[0])">{{ key | titlecase }}</th>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="body" let-rowData>
+        <tr>
+          <td *ngFor="let key of getKeys(rowData)">{{ rowData[key] }}</td>
+        </tr>
+      </ng-template>
+
+    </p-table>
+
+  </ng-container>
+
+  <ng-template #imageTemplate>
+    
+    <div class="image-container">
+      <img [src]="getImagenUrl(item)" alt="Generated graph" width="100%">
+    </div>
+
+  </ng-template>
+
+</div>

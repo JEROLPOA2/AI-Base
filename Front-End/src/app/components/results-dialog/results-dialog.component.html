@@ -1,0 +1,49 @@
+<h3 mat-dialog-title>Resultados De La Consulta</h3>
+
+<div mat-dialog-actions id="buttons_div">
+  <button mat-button (click)="onDownload()" class="action_button">
+    <img src="/images/Save_Icon.svg" class="button_icon" alt="icono" />
+    Descargar Informacion
+  </button>
+  <button mat-button (click)="onTransfer()" class="action_button">
+    <img src="/images/Transfer_Icon.svg" class="button_icon" alt="icono" />
+    Transferir a Reportes
+  </button>
+</div>
+
+<ng-container [ngSwitch]="intention">
+  <div mat-dialog-content id="table_div" *ngSwitchCase="'MAKE_QUERY'">
+    <div *ngIf="results.length > 0; else noData">
+      <p-table
+        [value]="results"
+        [paginator]="true"
+        [rows]="10"
+        [rowsPerPageOptions]="[5, 10, 15, 20]"
+        responsiveLayout="scroll"
+      >
+        <ng-template pTemplate="header">
+          <tr>
+            <th *ngFor="let key of getKeys(results[0])">{{ key | titlecase }}</th>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-rowData>
+          <tr>
+            <td *ngFor="let key of getKeys(rowData)">{{ rowData[key] }}</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+
+    <ng-template #noData>
+      <p>No results available.</p>
+    </ng-template>
+  </div>
+  <div mat-dialog-content *ngSwitchCase="'MAKE_QUERY_AND_GRAPH'">
+    <img [src]="imageURL" alt="Generated graph" width="640">
+  </div>
+  <div mat-dialog-content *ngSwitchCase="'MAKE_GRAPH'">
+    <img [src]="imageURL" alt="Generated graph" width="640">
+  </div>
+</ng-container>
+

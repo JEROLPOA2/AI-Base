@@ -1,0 +1,90 @@
+/* Estilo para el diálogo */
+:host {
+  padding: 20px 20px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: hidden;
+}
+
+#table_div{
+  max-height: 100%;
+  overflow-y: scroll;
+}
+/* Estilo para el título H3 */
+h3 {
+  font-size: 20pt; /* Tamaño de letra para el título */
+  font-weight: 500;
+}
+
+::ng-deep .p-datatable-header *,
+::ng-deep .p-datatable-wrapper *,
+::ng-deep .p-paginator *,
+::ng-deep .p-column-filter-row-items * {
+
+  font-size: 9pt;
+
+}
+
+::ng-deep .p-datatable-header{
+
+  background-color: #4b5563;
+  font-weight: 600;
+}
+
+::ng-deep .p-paginator .p-paginator-page,
+::ng-deep .p-paginator .p-paginator-next,
+::ng-deep .p-paginator .p-paginator-prev,
+::ng-deep .p-paginator .p-paginator-first,
+::ng-deep .p-paginator .p-paginator-last {
+  padding: 0.5rem 1rem; // Adjust padding to change button height
+  line-height: 1rem; // Set line-height to control vertical space
+  height: 2.5rem; // Set explicit height if needed
+}
+
+// Targeting the dropdown in the paginator
+::ng-deep .p-paginator {
+  height: auto; // Adjust the dropdown height
+  margin: 0px 0px 0px 0px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-size: 9pt;
+}
+
+#buttons_div {
+  width: 100%;
+  padding-bottom: 5px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.action_button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 9pt;
+  font-weight: 500;
+  color: black;
+  padding: 7px 7px 7px 7px;
+  width: auto;
+  height: auto;
+  border: 1px solid rgb(230, 230, 230);
+  border-radius: 10px;
+  background: transparent;
+}
+
+.button_icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+
+.action_button:hover {
+  background-color: rgb(243, 244, 246);
+  color: #4b5563;
+  transition: 0.2 ease;
+}
