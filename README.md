@@ -46,7 +46,7 @@ git clone https://github.com/JEROLPOA2/AI-Base.git
 
 ### Configuración del Back-end
 
-A traves de Visual Studio Code ingrese a la carpeta del repositorio y ejecute las siguientes instrucciones en una terminal de git:
+A través de Visual Studio Code ingrese a la carpeta del repositorio y ejecute las siguientes instrucciones en una terminal de git:
 
 ```bash
 cd Back-End
@@ -55,7 +55,7 @@ pip install -r requirements.txt
 
 ### Configuración del Front-end
 
-A traves de Visual Studio Code ingrese a la carpeta del repositorio y ejecute las siguientes instrucciones en una terminal de git:
+A través de Visual Studio Code ingrese a la carpeta del repositorio y ejecute las siguientes instrucciones en una terminal de git:
 
 ```bash
 cd Front-End
@@ -69,7 +69,7 @@ npm install
 
 ### Servidor del Front-end
 
-A traves de Visual Studio Code ingrese a la carpeta del repositorio y ejecute las siguientes instrucciones en una terminal de git:
+A través de Visual Studio Code ingrese a la carpeta del repositorio y ejecute las siguientes instrucciones en una terminal de git:
 
 ```bash
 cd Front-End
@@ -78,20 +78,20 @@ ng serve -o
 
 ### Servidor del Back-end
 
-A traves de Visual Studio Code ingrese a la carpeta del repositorio y ejecute las siguientes instrucciones en una terminal de git:
+A través de Visual Studio Code ingrese a la carpeta del repositorio y ejecute las siguientes instrucciones en una terminal de git:
 
 ```bash
 cd Back-End
 ```
 
-A traves de Visual Studio Code cree una terminal de PowerShell y ejecute la siguiente instrucción:
+A través de Visual Studio Code cree una terminal de PowerShell y ejecute la siguiente instrucción:
 
 ```bash
 uvicorn app.main:app --reload --port 4321
 ```
 
 
-**Nota**: Por defecto la aplicación debe configurarse para correr en el puerto 4321, en caso de que se requiera utilizar un puerto diferente asegurese de corregir debidamente las rutas tanto en Back-End como en Front-End.
+**Nota**: Por defecto la aplicación debe configurarse para correr en el puerto 4321, en caso de que se requiera utilizar un puerto diferente asegúrese de corregir debidamente las rutas tanto en Back-End como en Front-End.
 
 
 ## Configuración De Servicios Externos
@@ -215,3 +215,4 @@ Muestra tablas de datos y gráficos generados por el asistente, con opciones par
 
 
 ¡Gracias por usar AI-Base! 🎉
+
