@@ -136,9 +136,13 @@ En caso de utilizar el servicio de OpenAI para la Asistencia De Inteligencia Art
 
 2. Configure las **System Instructions** de sus asistentes haciendo uso de la información del archivo **Assistants System Instructions** presente en el repositorio.
 
-3. Se recomienda configurar los parametros **Temprerature** y **Top P** de cada asistente a valores dentro del rango [0.01, 0.2] con el objetivo de obtener respuestas concisas y evitar que los modelos "inventen información".
+3. Para el Database **Query Assistant**, asegúrese de proporcionarle un dump del esquema de la base de datos, se recomienda también proporcionarle un documento explicativo de relacione la base de datos con la realidad y las necesidades del negocio.
 
-4. Agregue las siguientes variables en el archivo `.env` del back-end y configurelas con los ID correspondientes:
+4. Habilite en el **Plot Assistant** la funcionalidad de Code Interpreter.
+
+5. Se recomienda configurar los parametros **Temprerature** y **Top P** de cada asistente a valores dentro del rango (0.01, 0.2) con el objetivo de obtener respuestas concisas y evitar que los modelos "inventen información".
+
+6. Agregue las siguientes variables en el archivo `.env` del back-end y configurelas con los ID correspondientes:
 
 ```bash
 INTENTION_ASSISTANT = your-intention-assistant-id
